@@ -1,0 +1,40 @@
+{
+  "HomePage": {
+    "title": "Welcome to Printify",
+    "description": "Your vision, our print."
+  },
+  "ServicesPage": {
+    "title": "Our Services",
+    "description": "We offer a comprehensive range of printing and advertising solutions tailored to elevate your business.",
+    "items": {
+      "digital": {
+        "title": "Digital Printing",
+        "description": "High-quality prints for brochures, flyers, business cards and more with fast turnaround."
+      },
+      "largeFormat": {
+        "title": "Large Format",
+        "description": "Eye-catching banners, posters, vehicle wraps and outdoor signage that demand attention."
+      },
+      "branding": {
+        "title": "Corporate Branding",
+        "description": "Complete brand identity packages including logos, stationery, and brand guidelines."
+      },
+      "design": {
+        "title": "Design Services",
+        "description": "Creative design solutions that capture your brand essence and engage your audience."
+      },
+      "offset": {
+        "title": "Offset Printing",
+        "description": "Cost-effective solutions for high-volume printing needs with superior quality."
+      },
+      "web": {
+        "title": "Web Design",
+        "description": "Modern, responsive websites that represent your brand effectively online."
+      },
+      "packaging": {
+        "title": "Packaging",
+        "description": "Custom packaging solutions that enhance product value and customer experience."
+      }
+    }
+  }
+}
