@@ -14,10 +14,10 @@ const features = [
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center bg-[#0a0a0a] pt-20 overflow-hidden">
-      {/* Background */}
+      {/* Background - using gradient instead of blur for performance */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/3" />
+        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-radial from-primary/10 to-transparent translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-radial from-primary/5 to-transparent -translate-x-1/3 translate-y-1/3" />
       </div>
 
       <div className="container mx-auto px-4 py-20">
@@ -115,7 +115,7 @@ export function Hero() {
               </div>
 
               {/* Floating card */}
-              <div className="absolute -left-4 top-1/3 bg-white/10 backdrop-blur-lg rounded-2xl p-4 border border-white/20 animate-fade-in delay-500">
+              <div className="absolute -left-4 top-1/3 bg-[#1a1a1a]/95 rounded-2xl p-4 border border-white/20 animate-fade-in delay-500">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
                     <CheckCircle className="w-6 h-6 text-primary-foreground" />

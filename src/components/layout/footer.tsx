@@ -28,10 +28,10 @@ const footerLinks = {
 export function Footer() {
   return (
     <footer className="relative bg-[#0a0a0a] text-white overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+      {/* Background decoration - using gradient for performance */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-radial from-primary/5 to-transparent translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-radial from-primary/5 to-transparent -translate-y-1/2 translate-x-1/2" />
       </div>
 
       {/* Newsletter section */}

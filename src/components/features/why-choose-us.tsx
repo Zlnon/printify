@@ -31,7 +31,7 @@ export function WhyChooseUs() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               
               {/* Floating stat card */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-lg rounded-2xl p-5 border border-white/20">
+              <div className="absolute bottom-6 left-6 right-6 bg-[#1a1a1a]/95 rounded-2xl p-5 border border-white/20">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-3xl font-bold text-white" style={{ fontFamily: 'var(--font-cabinet)' }}>

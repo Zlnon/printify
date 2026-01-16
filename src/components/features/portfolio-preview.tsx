@@ -58,14 +58,14 @@ export function PortfolioPreview() {
             <Link 
               key={project.id}
               href="#"
-              className="group block relative overflow-hidden rounded-2xl border border-border hover:border-primary/30 transition-all"
+              className="group block relative overflow-hidden rounded-2xl border border-border hover:border-primary/30 transition-colors"
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   loading="lazy"
                 />

@@ -6,7 +6,6 @@ import { LangSwitcher } from "@/components/lang-switcher"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { Menu, X, Phone } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
 const navItems = [
@@ -23,15 +22,15 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isScrolled 
-          ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-lg shadow-black/10' 
+          ? 'bg-[#0a0a0a] shadow-lg shadow-black/10' 
           : 'bg-[#0a0a0a]'
       }`}
     >
@@ -99,56 +98,31 @@ export function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-[#0a0a0a] border-t border-white/10 overflow-hidden"
-          >
-            <div className="container mx-auto px-4 py-6 space-y-4">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="block py-3 text-lg font-medium text-white hover:text-primary transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                className="pt-4 flex items-center gap-4 border-t border-white/10"
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-[#0a0a0a] border-t border-white/10">
+          <div className="container mx-auto px-4 py-6 space-y-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block py-3 text-lg font-medium text-white hover:text-primary transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                <LangSwitcher />
-                <ModeToggle />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <Button className="w-full h-12 rounded-xl mt-4" asChild>
-                  <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                    Get a Quote
-                  </Link>
-                </Button>
-              </motion.div>
+                {item.label}
+              </Link>
+            ))}
+            <div className="pt-4 flex items-center gap-4 border-t border-white/10">
+              <LangSwitcher />
+              <ModeToggle />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Button className="w-full h-12 rounded-xl mt-4" asChild>
+              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                Get a Quote
+              </Link>
+            </Button>
+          </div>
+        </div>
+      )}
     </header>
   )
 }

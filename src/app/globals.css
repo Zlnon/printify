@@ -101,9 +101,7 @@
   --font-display: var(--font-cabinet);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Removed scroll-behavior: smooth for better performance */
 
 body {
   background: var(--background);
@@ -195,6 +193,11 @@ body {
 /* Yellow highlight */
 .highlight-yellow {
   color: var(--primary);
+}
+
+/* Radial gradient utility - GPU optimized alternative to blur */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
 }
 
 /* Lightweight CSS animations */
