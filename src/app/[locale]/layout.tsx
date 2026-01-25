@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing';
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ThemeProvider } from '@/components/theme-provider';
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 const dmSans = DM_Sans({
   variable: "--font-satoshi",
@@ -55,6 +56,7 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <CustomCursor />
             <div className="flex min-h-screen flex-col noise">
               <Header />
               <main className="flex-1 relative z-10">{children}</main>

@@ -1,20 +1,21 @@
 "use client"
 
+import { motion } from "framer-motion"
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react"
-import { useState } from "react"
+import { useTranslations } from "next-intl"
 
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
-  email: z.email({
+  email: z.string().email({
     message: "Please enter a valid email address.",
   }),
   message: z.string().min(10, {
@@ -22,34 +23,9 @@ const formSchema = z.object({
   }),
 })
 
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    value: "hello@printify.com",
-    href: "mailto:hello@printify.com"
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    value: "+1 (234) 567-890",
-    href: "tel:+1234567890"
-  },
-  {
-    icon: MapPin,
-    title: "Address",
-    value: "123 Print Street, Design City",
-    href: "#"
-  },
-  {
-    icon: Clock,
-    title: "Hours",
-    value: "Mon - Fri: 9AM - 6PM",
-    href: null
-  }
-]
-
 export default function ContactPage() {
+  const t = useTranslations('ContactPage')
+  const tCommon = useTranslations('Common')
   const [isSubmitted, setIsSubmitted] = useState(false)
   
   const {
@@ -67,6 +43,33 @@ export default function ContactPage() {
     reset()
     setTimeout(() => setIsSubmitted(false), 5000)
   }
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: t('info.email'),
+      value: "hello@printify.com",
+      href: "mailto:hello@printify.com"
+    },
+    {
+      icon: Phone,
+      title: t('info.phone'),
+      value: "+1 (234) 567-890",
+      href: "tel:+1234567890"
+    },
+    {
+      icon: MapPin,
+      title: t('info.address'),
+      value: "123 Print Street, Design City",
+      href: "#"
+    },
+    {
+      icon: Clock,
+      title: t('info.hours'),
+      value: "Mon - Fri: 9AM - 6PM",
+      href: null
+    }
+  ]
 
   return (
     <div className="relative min-h-screen">
@@ -86,16 +89,16 @@ export default function ContactPage() {
           className="text-center mb-16"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-            Get in Touch
+            {t('pill')}
           </span>
           <h1 
             className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
             style={{ fontFamily: 'var(--font-cabinet)' }}
           >
-            Let&apos;s <span className="text-gradient">Connect</span>
+            {t('title')} <span className="text-gradient">{t('titleHighlight')}</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -112,10 +115,10 @@ export default function ContactPage() {
                 className="text-2xl font-bold mb-4"
                 style={{ fontFamily: 'var(--font-cabinet)' }}
               >
-                Contact Information
+                {t('info.title')}
               </h2>
               <p className="text-muted-foreground">
-                Reach out through any of these channels and we&apos;ll get back to you promptly.
+                {t('info.description')}
               </p>
             </div>
 
@@ -175,10 +178,10 @@ export default function ContactPage() {
                     className="text-2xl font-bold mb-2"
                     style={{ fontFamily: 'var(--font-cabinet)' }}
                   >
-                    Message Sent!
+                    {t('form.successTitle')}
                   </h3>
                   <p className="text-muted-foreground">
-                    Thank you for reaching out. We&apos;ll get back to you soon.
+                    {t('form.successDesc')}
                   </p>
                 </motion.div>
               ) : (
@@ -188,7 +191,7 @@ export default function ContactPage() {
                       htmlFor="name" 
                       className="text-sm font-medium"
                     >
-                      Your Name
+                      {t('form.name')}
                     </label>
                     <Input 
                       id="name" 
@@ -206,13 +209,13 @@ export default function ContactPage() {
                       </motion.p>
                     )}
                   </div>
-                  
+
                   <div className="space-y-2">
                     <label 
                       htmlFor="email" 
                       className="text-sm font-medium"
                     >
-                      Email Address
+                      {t('form.email')}
                     </label>
                     <Input 
                       id="email" 
@@ -236,11 +239,11 @@ export default function ContactPage() {
                       htmlFor="message" 
                       className="text-sm font-medium"
                     >
-                      Your Message
+                      {t('form.message')}
                     </label>
                     <Textarea 
                       id="message" 
-                      placeholder="Tell us about your project..."
+                      placeholder={t('form.message')}
                       className="min-h-[160px] rounded-xl border-2 focus:border-primary transition-colors resize-none"
                       {...register("message")} 
                     />
@@ -264,11 +267,11 @@ export default function ContactPage() {
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
                         <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                        Sending...
+                        {tCommon('buttons.sending')}
                       </span>
                     ) : (
                       <span className="flex items-center gap-2">
-                        Send Message
+                        {tCommon('buttons.sendMessage')}
                         <Send className="w-4 h-4" />
                       </span>
                     )}

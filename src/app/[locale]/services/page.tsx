@@ -23,6 +23,7 @@ const item = {
 
 export default function ServicesPage() {
   const t = useTranslations('ServicesPage');
+  const tCommon = useTranslations('Common');
   
   const services = [
     { icon: Printer, key: 'digital', color: 'from-orange-500 to-red-500' },
@@ -51,13 +52,13 @@ export default function ServicesPage() {
           className="text-center mb-20"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-            What We Do
+            {t('pill')}
           </span>
           <h1 
             className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
             style={{ fontFamily: 'var(--font-cabinet)' }}
           >
-            Our <span className="text-gradient">Services</span>
+            {t('title')} <span className="text-gradient">{t('titleHighlight')}</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('description')}
@@ -100,7 +101,7 @@ export default function ServicesPage() {
                 
                 {/* Learn more link */}
                 <div className="relative flex items-center gap-2 text-sm font-medium text-primary opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  <span>Learn more</span>
+                  <span>{tCommon('buttons.learnMore')}</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </motion.div>
@@ -120,14 +121,14 @@ export default function ServicesPage() {
               className="text-2xl lg:text-3xl font-bold mb-4"
               style={{ fontFamily: 'var(--font-cabinet)' }}
             >
-              Ready to Start Your Project?
+              {t('cta.title')}
             </h2>
             <p className="text-muted-foreground mb-8">
-              Let&apos;s discuss how we can bring your vision to life with our premium printing solutions.
+              {t('cta.description')}
             </p>
             <Button size="lg" className="h-14 px-8 rounded-xl glow-primary" asChild>
               <Link href="/contact" className="flex items-center gap-2">
-                Get in Touch
+                {tCommon('buttons.contact')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>

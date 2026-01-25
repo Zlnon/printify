@@ -1,40 +1,229 @@
 {
-  "HomePage": {
-    "title": "Welcome to Printify",
-    "description": "Your vision, our print."
+  "Common": {
+    "buttons": {
+      "getQuote": "Get a Quote",
+      "learnMore": "Learn More",
+      "viewAll": "View All",
+      "startCreating": "Start creating",
+      "sendMessage": "Send Message",
+      "sending": "Sending..."
+    }
+  },
+  "Navigation": {
+    "items": {
+      "services": "Services",
+      "about": "About",
+      "contact": "Contact",
+      "home": "Home"
+    }
+  },
+  "Hero": {
+    "pill": "The Future of Print",
+    "title": "Bring your",
+    "titleHighlight": "vision to life.",
+    "description": "Premium tactile experiences that bridge the gap between digital dreams and physical reality.",
+    "buttons": {
+      "explore": "Explore Services",
+      "work": "View Our Work"
+    }
+  },
+  "Clients": {
+    "title": "Trusted by Leading Brands"
+  },
+  "ServicesPreview": {
+    "pill": "What We Do",
+    "title": "Printing & Advertising",
+    "titleHighlight": "Services",
+    "description": "From concept to completion, we deliver exceptional quality across all printing solutions.",
+    "viewAll": "View All Services",
+    "items": {
+      "digital": { "title": "Digital Printing", "description": "High-quality digital prints with quick turnaround." },
+      "largeFormat": { "title": "Large Format", "description": "Banners, posters, and signage that stand out." },
+      "branding": { "title": "Branding", "description": "Identity design and corporate materials." },
+      "offset": { "title": "Offset Printing", "description": "Cost-effective high-volume printing." },
+      "web": { "title": "Web Design", "description": "Modern websites and digital experiences." },
+      "packaging": { "title": "Packaging", "description": "Custom packaging solutions." },
+      "design": { "title": "Creative Design", "description": "Expert designers bring your vision to life." }
+    }
+  },
+  "PortfolioPreview": {
+    "pill": "Our Work",
+    "title": "Recent",
+    "titleHighlight": "Projects",
+    "viewAll": "View All Projects",
+    "watermark": "SELECTED WORKS"
+  },
+  "WhyChooseUs": {
+    "pill": "Why Printify",
+    "title": "The Printify",
+    "titleHighlight": "Difference",
+    "description": "We combine creativity, technology, and dedication to deliver printing solutions that exceed expectations.",
+    "yearsExcellence": "Years of Excellence",
+    "items": {
+      "quality": { "title": "Premium Quality", "desc": "Finest materials and latest technology." },
+      "turnaround": { "title": "Fast Turnaround", "desc": "Quick delivery without compromise." },
+      "design": { "title": "Creative Design", "desc": "Expert designers bring your vision to life." },
+      "support": { "title": "Dedicated Support", "desc": "Personal account managers for you." },
+      "technology": { "title": "Modern Technology", "desc": "State-of-the-art equipment." },
+      "satisfaction": { "title": "Satisfaction Guaranteed", "desc": "We stand behind every project." }
+    }
+  },
+  "Testimonials": {
+    "pill": "Testimonials",
+    "title": "What Our Clients",
+    "titleHighlight": "Say",
+    "description": "Hear from the brands we've helped succeed with our premium printing solutions.",
+    "items": {
+      "sarah": {
+        "quote": "Printify transformed our brand materials completely. The quality exceeded our expectations.",
+        "author": "Sarah Johnson",
+        "role": "Marketing Director"
+      },
+      "michael": {
+        "quote": "Working with Printify has been a game-changer. Their attention to detail is unmatched.",
+        "author": "Ahmed Hassan",
+        "role": "CEO"
+      },
+      "emma": {
+        "quote": "The packaging designs significantly boosted our product appeal. Highly recommended!",
+        "author": "Emily Chen",
+        "role": "Brand Manager"
+      }
+    }
+  },
+  "CtaSection": {
+    "title": "Ready to",
+    "titleHighlight": "Elevate",
+    "titleSuffix": "Your Brand?",
+    "description": "Get a free consultation and quote today. Let's create something extraordinary together.",
+    "buttons": {
+      "quote": "Get Free Quote",
+      "call": "Call Us Now"
+    },
+    "benefits": {
+      "consultation": "Free Consultation",
+      "turnaround": "Quick Turnaround",
+      "quality": "Quality Guaranteed"
+    }
+  },
+  "Footer": {
+    "cta": {
+      "line1": "LET'S WORK",
+      "line2": "TOGETHER",
+      "button": "Start a Project"
+    },
+    "description": "Elevating brands through premium printing and strategic advertising solutions. Quality without compromise.",
+    "headings": {
+      "services": "Services",
+      "company": "Company",
+      "contact": "Contact"
+    },
+    "rights": "All rights reserved.",
+    "links": {
+        "privacy": "Privacy",
+        "terms": "Terms"
+    }
+  },
+  "ContactPage": {
+    "pill": "Get in Touch",
+    "title": "Let's",
+    "titleHighlight": "Connect",
+    "description": "Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "info": {
+        "title": "Contact Information",
+        "description": "Reach out through any of these channels and we'll get back to you promptly.",
+        "email": "Email",
+        "phone": "Phone",
+        "address": "Address",
+        "hours": "Hours"
+    },
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "message": "Your Message",
+      "successTitle": "Message Sent!",
+      "successDesc": "Thank you for reaching out. We'll get back to you soon.",
+      "validation": {
+          "name": "Name must be at least 2 characters.",
+          "email": "Please enter a valid email address.",
+          "message": "Message must be at least 10 characters."
+      }
+    }
   },
   "ServicesPage": {
-    "title": "Our Services",
+    "pill": "What We Do",
+    "title": "Our",
+    "titleHighlight": "Services",
     "description": "We offer a comprehensive range of printing and advertising solutions tailored to elevate your business.",
-    "items": {
-      "digital": {
-        "title": "Digital Printing",
-        "description": "High-quality prints for brochures, flyers, business cards and more with fast turnaround."
+     "items": {
+        "digital": {
+          "title": "Digital Printing",
+          "description": "High-quality prints for brochures, flyers, business cards and more with fast turnaround."
+        },
+        "largeFormat": {
+          "title": "Large Format",
+          "description": "Eye-catching banners, posters, vehicle wraps and outdoor signage that demand attention."
+        },
+        "branding": {
+          "title": "Corporate Branding",
+          "description": "Complete brand identity packages including logos, stationery, and brand guidelines."
+        },
+        "design": {
+          "title": "Design Services",
+          "description": "Creative design solutions that capture your brand essence and engage your audience."
+        },
+        "offset": {
+          "title": "Offset Printing",
+          "description": "Cost-effective solutions for high-volume printing needs with superior quality."
+        },
+        "web": {
+          "title": "Web Design",
+          "description": "Modern, responsive websites that represent your brand effectively online."
+        },
+        "packaging": {
+          "title": "Packaging",
+          "description": "Custom packaging solutions that enhance product value and customer experience."
+        }
       },
-      "largeFormat": {
-        "title": "Large Format",
-        "description": "Eye-catching banners, posters, vehicle wraps and outdoor signage that demand attention."
-      },
-      "branding": {
-        "title": "Corporate Branding",
-        "description": "Complete brand identity packages including logos, stationery, and brand guidelines."
-      },
-      "design": {
-        "title": "Design Services",
-        "description": "Creative design solutions that capture your brand essence and engage your audience."
-      },
-      "offset": {
-        "title": "Offset Printing",
-        "description": "Cost-effective solutions for high-volume printing needs with superior quality."
-      },
-      "web": {
-        "title": "Web Design",
-        "description": "Modern, responsive websites that represent your brand effectively online."
-      },
-      "packaging": {
-        "title": "Packaging",
-        "description": "Custom packaging solutions that enhance product value and customer experience."
-      }
+    "cta": {
+        "title": "Ready to Start Your Project?",
+        "description": "Let's discuss how we can bring your vision to life with our premium printing solutions.",
+        "button": "Get in Touch"
+    }
+  },
+  "AboutPage": {
+    "hero": {
+        "pill": "Our Story",
+        "title": "Crafting",
+        "titleHighlight": "Excellence",
+        "titleSuffix": "Since Day One",
+        "description": "We're not just a printing company — we're storytellers, brand builders, and creative partners dedicated to making your vision tangible."
+    },
+    "stats": {
+        "founded": "Founded",
+        "projects": "Projects",
+        "team": "Team Members",
+        "awards": "Awards"
+    },
+    "story": {
+        "title": "The Power Behind",
+        "titleHighlight": "Every Brand",
+        "p1": "Printify Advertising & Printing was born from a simple belief: every business deserves access to premium-quality printing that tells their story beautifully.",
+        "p2": "What started as a small print shop has evolved into a full-service creative studio, combining cutting-edge technology with artistic expertise to deliver results that exceed expectations.",
+        "p3": "Today, we serve clients across industries — from startups finding their voice to established enterprises refreshing their image. Our commitment remains the same: quality, creativity, and customer satisfaction in everything we do.",
+        "awardTitle": "Award Winning",
+        "awardDesc": "Recognized for excellence in print design and innovation"
+    },
+    "values": {
+        "title": "Our",
+        "titleHighlight": "Values",
+        "description": "The principles that guide everything we do",
+        "items": {
+             "quality": { "title": "Quality First", "description": "We never compromise on quality. Every print, every design reflects our commitment to excellence." },
+             "customer": { "title": "Customer Focus", "description": "Your success is our success. We listen, understand, and deliver beyond expectations." },
+             "innovation": { "title": "Innovation", "description": "We stay ahead with cutting-edge technology and creative solutions that set trends." },
+             "collaboration": { "title": "Collaboration", "description": "We work as partners, not just providers. Your vision becomes our mission." }
+        }
     }
   }
 }

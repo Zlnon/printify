@@ -2,38 +2,37 @@
 
 import { motion } from "framer-motion"
 import { Target, Eye, Heart, Award, Users, Zap } from "lucide-react"
-
-const values = [
-  {
-    icon: Target,
-    title: "Quality First",
-    description: "We never compromise on quality. Every print, every design reflects our commitment to excellence."
-  },
-  {
-    icon: Heart,
-    title: "Customer Focus",
-    description: "Your success is our success. We listen, understand, and deliver beyond expectations."
-  },
-  {
-    icon: Zap,
-    title: "Innovation",
-    description: "We stay ahead with cutting-edge technology and creative solutions that set trends."
-  },
-  {
-    icon: Users,
-    title: "Collaboration",
-    description: "We work as partners, not just providers. Your vision becomes our mission."
-  }
-]
-
-const stats = [
-  { number: "2014", label: "Founded" },
-  { number: "500+", label: "Projects" },
-  { number: "50+", label: "Team Members" },
-  { number: "15+", label: "Awards" }
-]
+import { useTranslations } from "next-intl"
 
 export default function AboutPage() {
+  const t = useTranslations('AboutPage')
+  
+  const values = [
+    {
+      icon: Target,
+      key: "quality"
+    },
+    {
+      icon: Heart,
+      key: "customer"
+    },
+    {
+      icon: Zap,
+      key: "innovation"
+    },
+    {
+      icon: Users,
+      key: "collaboration"
+    }
+  ]
+
+  const stats = [
+    { number: "2014", key: "founded" },
+    { number: "500+", key: "projects" },
+    { number: "50+", key: "team" },
+    { number: "15+", key: "awards" }
+  ]
+
   return (
     <div className="relative min-h-screen">
       {/* Background decorations */}
@@ -52,17 +51,16 @@ export default function AboutPage() {
           className="max-w-4xl mx-auto text-center"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-            Our Story
+            {t('hero.pill')}
           </span>
           <h1 
             className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
             style={{ fontFamily: 'var(--font-cabinet)' }}
           >
-            Crafting <span className="text-gradient">Excellence</span> Since Day One
+            {t('hero.title')} <span className="text-gradient">{t('hero.titleHighlight')}</span> {t('hero.titleSuffix')}
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            We&apos;re not just a printing company — we&apos;re storytellers, brand builders, 
-            and creative partners dedicated to making your vision tangible.
+            {t('hero.description')}
           </p>
         </motion.div>
       </section>
@@ -77,7 +75,7 @@ export default function AboutPage() {
         >
           {stats.map((stat, index) => (
             <motion.div
-              key={stat.label}
+              key={stat.key}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
@@ -90,7 +88,7 @@ export default function AboutPage() {
               >
                 {stat.number}
               </div>
-              <div className="relative text-sm text-muted-foreground">{stat.label}</div>
+              <div className="relative text-sm text-muted-foreground">{t(`stats.${stat.key}`)}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -108,23 +106,12 @@ export default function AboutPage() {
               className="text-3xl lg:text-4xl font-bold mb-6"
               style={{ fontFamily: 'var(--font-cabinet)' }}
             >
-              The Power Behind <span className="text-gradient">Every Brand</span>
+              {t('story.title')} <span className="text-gradient">{t('story.titleHighlight')}</span>
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Printify Advertising & Printing was born from a simple belief: every business 
-                deserves access to premium-quality printing that tells their story beautifully.
-              </p>
-              <p>
-                What started as a small print shop has evolved into a full-service creative 
-                studio, combining cutting-edge technology with artistic expertise to deliver 
-                results that exceed expectations.
-              </p>
-              <p>
-                Today, we serve clients across industries — from startups finding their voice 
-                to established enterprises refreshing their image. Our commitment remains the same: 
-                quality, creativity, and customer satisfaction in everything we do.
-              </p>
+              <p>{t('story.p1')}</p>
+              <p>{t('story.p2')}</p>
+              <p>{t('story.p3')}</p>
             </div>
           </motion.div>
           
@@ -144,10 +131,10 @@ export default function AboutPage() {
                     className="text-2xl font-bold mb-2"
                     style={{ fontFamily: 'var(--font-cabinet)' }}
                   >
-                    Award Winning
+                    {t('story.awardTitle')}
                   </h3>
                   <p className="text-muted-foreground">
-                    Recognized for excellence in print design and innovation
+                    {t('story.awardDesc')}
                   </p>
                 </div>
               </div>
@@ -171,10 +158,10 @@ export default function AboutPage() {
             className="text-3xl lg:text-4xl font-bold mb-4"
             style={{ fontFamily: 'var(--font-cabinet)' }}
           >
-            Our <span className="text-gradient">Values</span>
+            {t('values.title')} <span className="text-gradient">{t('values.titleHighlight')}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            The principles that guide everything we do
+            {t('values.description')}
           </p>
         </motion.div>
         
@@ -183,7 +170,7 @@ export default function AboutPage() {
             const Icon = value.icon
             return (
               <motion.div
-                key={value.title}
+                key={value.key}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
@@ -196,10 +183,10 @@ export default function AboutPage() {
                   className="text-lg font-bold mb-2"
                   style={{ fontFamily: 'var(--font-cabinet)' }}
                 >
-                  {value.title}
+                  {t(`values.items.${value.key}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {value.description}
+                  {t(`values.items.${value.key}.description`)}
                 </p>
               </motion.div>
             )

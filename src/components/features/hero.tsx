@@ -1,138 +1,110 @@
 "use client"
 
+import { useTheme } from "next-themes"
+import { useState, useEffect } from "react"
+
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
-import { ArrowRight, Play, CheckCircle } from "lucide-react"
-import Image from "next/image"
+import { ArrowRight } from "lucide-react"
+import LightRays from "@/components/ui/light-rays"
+import { motion, useScroll, useTransform } from "framer-motion"
 
-const features = [
-  "Premium Quality Materials",
-  "Fast Turnaround Time",
-  "Expert Design Team"
-]
+import { useTranslations } from "next-intl"
 
 export function Hero() {
+  const t = useTranslations('Hero')
+  const { scrollYProgress } = useScroll()
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 150])
+  const cardY = useTransform(scrollYProgress, [0, 1], [0, -50])
+  const textScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Ray configuration based on theme
+  const raysColor = mounted && resolvedTheme === 'dark' ? '#FFD700' : '#d4af37'
+
   return (
-    <section className="relative min-h-screen flex items-center bg-[#0a0a0a] pt-20 overflow-hidden">
-      {/* Background - using gradient instead of blur for performance */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-radial from-primary/10 to-transparent translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-radial from-primary/5 to-transparent -translate-x-1/3 translate-y-1/3" />
+    <section className="relative min-h-[110vh] flex items-center justify-center overflow-hidden pt-20 perspective-1000 bg-background transition-colors duration-500">
+      
+      {/* LAYER 1: Light Rays (Background) */}
+      <div className="absolute inset-0 z-0 pointer-events-none mix-blend-normal dark:mix-blend-screen">
+        {mounted && (
+            <LightRays
+                raysOrigin="top-center"
+                raysColor={raysColor}
+                raysSpeed={0.6} // Slightly slower for this calmer vibe
+                lightSpread={0.8} // Wider spread
+                rayIntensity={10} // softer
+                rayCount={26} // more rays for smoother look
+                className="opacity-70 dark:opacity-50"
+             />
+        )}
       </div>
 
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left content */}
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/80 mb-8 animate-fade-in">
-              <span className="flex h-2 w-2 rounded-full bg-primary"></span>
-              <span>Power Behind Every Brand</span>
-            </div>
+       {/* LAYER 2: Animated Gradient Orb */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] animate-pulse pointer-events-none z-0" />
 
-            <h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white animate-fade-in-up"
+
+      {/* LAYER 3: Content */}
+      <div className="container relative z-10 px-4 text-center">
+        <motion.div
+           style={{ y: cardY, scale: textScale }}
+           className="relative z-10"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6 border border-primary/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              {t('pill')}
+            </div>
+            
+            <h1 
+              className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground mb-6 drop-shadow-2xl"
               style={{ fontFamily: 'var(--font-cabinet)' }}
             >
-              Elevate Your
-              <span className="block text-primary mt-2">Brand Identity</span>
-              <span className="block mt-2">With Premium Print</span>
+              {t('title')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-yellow-400 to-primary animate-gradient-x underline decoration-wavy decoration-primary/30 decoration-4 underline-offset-8">
+                {t('titleHighlight')}
+              </span>
             </h1>
 
-            <p className="mt-8 text-lg sm:text-xl text-white/60 max-w-xl leading-relaxed animate-fade-in-up delay-100">
-              From business cards to billboards, we deliver exceptional printing 
-              and advertising solutions that make your brand unforgettable.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+              {t('description')}
             </p>
 
-            {/* Features list */}
-            <div className="mt-8 flex flex-wrap gap-4 animate-fade-in-up delay-200">
-              {features.map((feature) => (
-                <div 
-                  key={feature}
-                  className="flex items-center gap-2 text-sm text-white/70"
-                >
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-4 animate-fade-in-up delay-300">
-              <Button size="lg" className="h-14 px-8 text-base rounded-xl font-semibold group" asChild>
-                <Link href="/contact" className="flex items-center gap-2">
-                  Get Free Quote
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="lg" className="h-14 px-8 rounded-full text-lg font-bold shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all hover:scale-105" asChild>
+                <Link href="/services">
+                  {t('buttons.explore')} <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="h-14 px-8 text-base rounded-xl border-white/20 text-white hover:bg-white/10 hover:border-white/30 group" 
-                asChild
-              >
-                <Link href="/services" className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-1">
-                    <Play className="w-3 h-3 fill-current" />
-                  </div>
-                  View Our Work
+              <Button size="lg" variant="outline" className="h-14 px-8 rounded-full text-lg font-bold border-2 hover:bg-secondary/50 transition-all hover:scale-105" asChild>
+                <Link href="/portfolio">
+                  {t('buttons.work')}
                 </Link>
               </Button>
             </div>
-
-            {/* Stats */}
-            <div className="mt-16 pt-8 border-t border-white/10 grid grid-cols-3 gap-8 animate-fade-in-up delay-400">
-              {[
-                { value: '10+', label: 'Years Experience' },
-                { value: '500+', label: 'Projects Completed' },
-                { value: '50+', label: 'Happy Clients' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div 
-                    className="text-3xl sm:text-4xl font-bold text-primary"
-                    style={{ fontFamily: 'var(--font-cabinet)' }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-white/50 mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right side - Hero image */}
-          <div className="hidden lg:block relative animate-fade-in delay-200">
-            <div className="relative w-full max-w-lg mx-auto">
-              {/* Main image */}
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10">
-                <Image
-                  src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop"
-                  alt="Brand design work"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 1024px) 0vw, 500px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-
-              {/* Floating card */}
-              <div className="absolute -left-4 top-1/3 bg-[#1a1a1a]/95 rounded-2xl p-4 border border-white/20 animate-fade-in delay-500">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-                    <CheckCircle className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold">Quality Assured</div>
-                    <div className="text-white/60 text-sm">100% Satisfaction</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative border */}
-              <div className="absolute -top-4 -right-4 w-32 h-32 border-2 border-primary/30 rounded-3xl" />
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
+      
+      {/* Scroll Indicator */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/50"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <span className="text-xs font-medium uppercase tracking-widest">Scroll</span>
+        <div className="w-px h-12 bg-gradient-to-b from-primary/50 to-transparent" />
+      </motion.div>
     </section>
   )
 }

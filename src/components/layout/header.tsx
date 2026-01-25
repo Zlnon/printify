@@ -8,13 +8,17 @@ import { useState, useEffect } from "react"
 import { Menu, X, Phone } from "lucide-react"
 import Image from "next/image"
 
-const navItems = [
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-]
+import { useTranslations } from "next-intl"
 
 export function Header() {
+  const t = useTranslations('Navigation')
+  const tCommon = useTranslations('Common')
+  
+  const navItems = [
+    { href: "/services", label: t('items.services') },
+    { href: "/about", label: t('items.about') },
+    { href: "/contact", label: t('items.contact') },
+  ]
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -28,10 +32,10 @@ export function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#0a0a0a] shadow-lg shadow-black/10' 
-          : 'bg-[#0a0a0a]'
+          ? 'bg-background/80 backdrop-blur-md shadow-lg shadow-foreground/5 border-b border-foreground/5 h-16' 
+          : 'bg-transparent h-24'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -43,7 +47,7 @@ export function Header() {
               alt="Printify"
               width={160}
               height={45}
-              className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-10 w-auto transition-transform duration-300 group-hover:scale-105 dark:filter-none invert hue-rotate-[180deg] brightness-125 saturate-125"
               priority
             />
           </Link>
@@ -54,7 +58,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white transition-colors group"
+                className="relative px-5 py-2.5 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors group"
               >
                 {item.label}
                 <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-3/4" />
@@ -81,7 +85,7 @@ export function Header() {
               className="hidden md:inline-flex rounded-xl h-11 px-6 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               asChild
             >
-              <Link href="/contact">Get a Quote</Link>
+              <Link href="/contact">{tCommon('buttons.getQuote')}</Link>
             </Button>
             
             {/* Mobile menu button */}
@@ -117,7 +121,7 @@ export function Header() {
             </div>
             <Button className="w-full h-12 rounded-xl mt-4" asChild>
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                Get a Quote
+                {tCommon('buttons.getQuote')}
               </Link>
             </Button>
           </div>
