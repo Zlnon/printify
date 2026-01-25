@@ -17,7 +17,7 @@ export function Hero() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 150])
+
   const cardY = useTransform(scrollYProgress, [0, 1], [0, -50])
   const textScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
 
@@ -39,8 +39,6 @@ export function Hero() {
                 raysColor={raysColor}
                 raysSpeed={0.6} // Slightly slower for this calmer vibe
                 lightSpread={0.8} // Wider spread
-                rayIntensity={10} // softer
-                rayCount={26} // more rays for smoother look
                 className="opacity-70 dark:opacity-50"
              />
         )}
