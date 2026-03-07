@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
-import { MousePointerClick } from "lucide-react"
+import { MousePointer2, MousePointerClick } from "lucide-react"
 
 export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false)
@@ -55,15 +55,17 @@ export function CustomCursor() {
         translateY: "-50%",
       }}
     >
-      {/* Base dot - always visible */}
+      {/* Base cursor - small arrow */}
       <motion.div
-        className="absolute w-2 h-2 rounded-full bg-primary"
+        className="absolute flex items-center justify-center"
         animate={{
           scale: isHovering ? 0 : 1,
           opacity: isHovering ? 0 : 1,
         }}
         transition={{ duration: 0.15 }}
-      />
+      >
+        <MousePointer2 className="w-5 h-5 text-primary" strokeWidth={2} />
+      </motion.div>
 
       {/* Hover state - clickable indicator */}
       <motion.div
