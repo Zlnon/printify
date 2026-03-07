@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import DotGrid from "@/components/ui/dot-grid"
 
 import { useTranslations } from "next-intl"
+import { siteConfig } from "@/config/site"
 
 export function CtaSection() {
   const t = useTranslations('CtaSection')
@@ -64,10 +65,10 @@ export function CtaSection() {
               className="h-16 px-10 rounded-full border-2 border-black/10 bg-transparent text-black hover:bg-black/5 hover:border-black/30 text-lg font-bold transition-all duration-300"
               asChild
             >
-              <Link href="tel:+1234567890">
+              <a href={`tel:${siteConfig.contact.phoneTel}`} className="flex items-center">
                 <Phone className="mr-2 h-5 w-5" />
                 {t('buttons.call')}
-              </Link>
+              </a>
             </Button>
           </div>
 

@@ -9,6 +9,7 @@ import { Menu, X, Phone } from "lucide-react"
 import Image from "next/image"
 
 import { useTranslations } from "next-intl"
+import { siteConfig } from "@/config/site"
 
 export function Header() {
   const t = useTranslations('Navigation')
@@ -16,6 +17,7 @@ export function Header() {
   
   const navItems = [
     { href: "/services", label: t('items.services') },
+    { href: "/projects", label: t('items.projects') },
     { href: "/about", label: t('items.about') },
     { href: "/contact", label: t('items.contact') },
   ]
@@ -70,11 +72,12 @@ export function Header() {
           <div className="flex items-center gap-3">
             {/* Phone number - desktop */}
             <a 
-              href="tel:+1234567890" 
+              href={`tel:${siteConfig.contact.phoneTel}`}
               className="hidden xl:flex items-center gap-2 text-sm text-white/70 hover:text-primary transition-colors"
+              dir="ltr"
             >
               <Phone className="w-4 h-4" />
-              <span>+1 (234) 567-890</span>
+              <span>{siteConfig.contact.phone}</span>
             </a>
             
             <div className="hidden sm:flex items-center gap-2 border-l border-white/10 pl-3 ml-2">

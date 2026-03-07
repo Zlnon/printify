@@ -85,7 +85,7 @@ export function Hero() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="h-14 px-8 rounded-full text-lg font-bold border-2 hover:bg-secondary/50 transition-all hover:scale-105" asChild>
-                <Link href="/portfolio">
+                <Link href="/projects">
                   {t('buttons.work')}
                 </Link>
               </Button>

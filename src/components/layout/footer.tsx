@@ -2,7 +2,8 @@ import { Link } from "@/i18n/routing"
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { siInstagram, siX, siFacebook } from "simple-icons"
+import { siInstagram, siTiktok } from "simple-icons"
+import { siteConfig } from "@/config/site"
 import type { LucideProps } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -25,22 +26,7 @@ const createSocialIcon = (iconData: { path: string; title: string }) => {
 }
 
 const Instagram = createSocialIcon(siInstagram)
-const Twitter = createSocialIcon(siX)
-const Facebook = createSocialIcon(siFacebook)
-
-// LinkedIn SVG icon (not available in simple-icons)
-const Linkedin = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    role="img"
-    viewBox="0 0 24 24"
-    className={className}
-    fill="currentColor"
-    {...props}
-  >
-    <title>LinkedIn</title>
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-  </svg>
-)
+const TikTok = createSocialIcon(siTiktok)
 
 export function Footer() {
   const t = useTranslations('Footer')
@@ -52,14 +38,12 @@ export function Footer() {
     ],
     company: [
       { label: tNav('items.about'), href: "/about" },
-      { label: "Our Work", href: "/portfolio" },
+      { label: "Our Work", href: "/projects" },
       { label: tNav('items.contact'), href: "/contact" },
     ],
     social: [
-      { icon: Instagram, href: "#", label: "Instagram" },
-      { icon: Twitter, href: "#", label: "Twitter" },
-      { icon: Linkedin, href: "#", label: "LinkedIn" },
-      { icon: Facebook, href: "#", label: "Facebook" },
+      { icon: Instagram, href: siteConfig.social.instagram, label: "Instagram" },
+      { icon: TikTok, href: siteConfig.social.tiktok, label: "TikTok" },
     ],
   }
 
@@ -149,7 +133,7 @@ export function Footer() {
                  <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center shrink-0">
                    <MapPin className="w-5 h-5 text-primary" />
                  </div>
-                 <div className="text-foreground/60 text-sm">
+                 <div className="text-foreground/60 text-sm" dir="ltr">
                    123 Print Street, Design District<br />
                    Doha, Qatar
                  </div>
@@ -158,16 +142,21 @@ export function Footer() {
                  <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center shrink-0">
                    <Phone className="w-5 h-5 text-primary" />
                  </div>
-                 <a href="tel:+1234567890" className="text-foreground/60 hover:text-primary transition-colors">
-                   +1 (234) 567-890
-                 </a>
+                 <div dir="ltr" className="text-left">
+                   <a href={`tel:${siteConfig.contact.phoneTel}`} className="text-foreground/60 hover:text-primary transition-colors block">
+                     {siteConfig.contact.phone}
+                   </a>
+                   <a href={`tel:${siteConfig.contact.phoneSecondaryTel}`} className="text-foreground/60 hover:text-primary transition-colors block">
+                     {siteConfig.contact.phoneSecondary}
+                   </a>
+                 </div>
                </li>
                <li className="flex items-center gap-4">
                  <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center shrink-0">
                    <Mail className="w-5 h-5 text-primary" />
                  </div>
-                 <a href="mailto:hello@printify.com" className="text-foreground/60 hover:text-primary transition-colors">
-                   hello@printify.com
+                 <a href={`mailto:${siteConfig.contact.email}`} className="text-foreground/60 hover:text-primary transition-colors" dir="ltr">
+                   {siteConfig.contact.email}
                  </a>
                </li>
              </ul>

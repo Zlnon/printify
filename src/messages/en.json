@@ -6,12 +6,14 @@
       "viewAll": "View All",
       "startCreating": "Start creating",
       "sendMessage": "Send Message",
-      "sending": "Sending..."
+      "sending": "Sending...",
+      "contact": "Contact"
     }
   },
   "Navigation": {
     "items": {
       "services": "Services",
+      "projects": "Projects",
       "about": "About",
       "contact": "Contact",
       "home": "Home"
@@ -51,7 +53,14 @@
     "title": "Recent",
     "titleHighlight": "Projects",
     "viewAll": "View All Projects",
-    "watermark": "SELECTED WORKS"
+    "watermark": "SELECTED WORKS",
+    "categories": {
+      "branding": "Branding",
+      "printDesign": "Print Design",
+      "largeFormat": "Large Format",
+      "packaging": "Packaging",
+      "localEvent": "Local Event"
+    }
   },
   "WhyChooseUs": {
     "pill": "Why Printify",
@@ -189,6 +198,40 @@
         "title": "Ready to Start Your Project?",
         "description": "Let's discuss how we can bring your vision to life with our premium printing solutions.",
         "button": "Get in Touch"
+    }
+  },
+  "ProjectsPage": {
+    "pill": "Our Work",
+    "title": "Our",
+    "titleHighlight": "Projects",
+    "description": "A showcase of our finest work — from branding and print design to packaging and large format. Every project tells a story.",
+    "filterAll": "All",
+    "noProjects": "No projects in this category yet.",
+    "categories": {
+      "branding": "Branding",
+      "printDesign": "Print Design",
+      "largeFormat": "Large Format",
+      "packaging": "Packaging",
+      "localEvent": "Local Event"
+    },
+    "cta": {
+      "title": "Have a Project in Mind?",
+      "description": "Let's bring your vision to life. Get in touch and we'll create something extraordinary together.",
+      "button": "Start a Project"
+    }
+  },
+  "ProjectDetail": {
+    "backToProjects": "Back to Projects",
+    "client": "Client",
+    "year": "Year",
+    "deliverables": "Deliverables",
+    "overview": "Project Overview",
+    "videos": "Videos",
+    "gallery": "Project Gallery",
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "description": "Let's create something amazing together. Get in touch for a free consultation.",
+      "button": "Get in Touch"
     }
   },
   "AboutPage": {

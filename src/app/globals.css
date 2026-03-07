@@ -130,6 +130,17 @@ body {
   cursor: none; /* Hide default cursor */
 }
 
+/* Hide default cursor on all interactive elements - custom cursor only */
+body a,
+body button,
+body [role="button"],
+body input[type="submit"],
+body input[type="button"],
+body select,
+body label[for] {
+  cursor: none !important;
+}
+
 ::selection {
   background: var(--primary);
   color: var(--primary-foreground);

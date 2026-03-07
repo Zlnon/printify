@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useTranslations } from "next-intl"
+import { siteConfig } from "@/config/site"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -48,14 +49,14 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: t('info.email'),
-      value: "hello@printify.com",
-      href: "mailto:hello@printify.com"
+      value: siteConfig.contact.email,
+      href: `mailto:${siteConfig.contact.email}`
     },
     {
       icon: Phone,
       title: t('info.phone'),
-      value: "+1 (234) 567-890",
-      href: "tel:+1234567890"
+      value: `${siteConfig.contact.phone} / ${siteConfig.contact.phoneSecondary}`,
+      href: `tel:${siteConfig.contact.phoneTel}`
     },
     {
       icon: MapPin,
@@ -132,7 +133,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">{info.title}</p>
-                      <p className="font-medium">{info.value}</p>
+                      <p className="font-medium" dir={info.href?.startsWith("tel:") || info.href?.startsWith("mailto:") ? "ltr" : undefined}>{info.value}</p>
                     </div>
                   </div>
                 )
