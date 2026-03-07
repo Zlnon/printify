@@ -234,6 +234,30 @@
       "button": "Get in Touch"
     }
   },
+  "FloatingAssistant": {
+    "botName": "Printo",
+    "statusOnline": "Printify Assistant · Online",
+    "bubbleText": "Hi there! Need help?",
+    "openingMessage": "Hey! 👋 I'm Printo, your Printify assistant. How can I help you today?",
+    "qr1": "View Services",
+    "qr2": "Get a Quote",
+    "qr3": "See Our Work",
+    "quickReplyResponse": "Great choice! Our team will be happy to assist you. Click below to reach out directly.",
+    "genericResponse": "Thanks for your message! Our team will get back to you shortly. You can also reach us directly via the contact page.",
+    "inputPlaceholder": "Type a message...",
+    "ctaLink": "Talk to a real person →"
+  },
+  "WelcomeDialog": {
+    "badge": "Welcome to Printify",
+    "title": "Bringing Your",
+    "titleHighlight": "Vision to Life.",
+    "description": "Qatar's premium printing & advertising studio. From bold large-format prints to stunning brand identities — we make your ideas real.",
+    "feature1": "Premium Quality",
+    "feature2": "Fast Turnaround",
+    "feature3": "Creative Design",
+    "cta": "Explore Services",
+    "skip": "Maybe Later"
+  },
   "AboutPage": {
     "hero": {
         "pill": "Our Story",

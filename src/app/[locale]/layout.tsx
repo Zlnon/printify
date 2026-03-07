@@ -9,6 +9,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ThemeProvider } from '@/components/theme-provider';
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { WelcomeDialog } from "@/components/ui/welcome-dialog";
+import { FloatingAssistant } from "@/components/ui/floating-assistant";
 
 const dmSans = DM_Sans({
   variable: "--font-satoshi",
@@ -57,6 +59,8 @@ export default async function LocaleLayout({
             disableTransitionOnChange
           >
             <CustomCursor />
+            <WelcomeDialog />
+            <FloatingAssistant />
             <div className="flex min-h-screen flex-col noise">
               <Header />
               <main className="flex-1 relative z-10">{children}</main>
