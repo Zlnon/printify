@@ -133,10 +133,9 @@ export function Footer() {
                  <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center shrink-0">
                    <MapPin className="w-5 h-5 text-primary" />
                  </div>
-                 <div className="text-foreground/60 text-sm" dir="ltr">
-                   123 Print Street, Design District<br />
-                   Doha, Qatar
-                 </div>
+                 <a href={siteConfig.contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors text-sm" dir="ltr">
+                   {siteConfig.contact.address}
+                 </a>
                </li>
                <li className="flex items-center gap-4">
                  <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center shrink-0">

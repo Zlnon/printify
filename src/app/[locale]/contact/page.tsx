@@ -61,8 +61,8 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: t('info.address'),
-      value: "123 Print Street, Design City",
-      href: "#"
+      value: siteConfig.contact.address,
+      href: siteConfig.contact.mapsUrl
     },
     {
       icon: Clock,
