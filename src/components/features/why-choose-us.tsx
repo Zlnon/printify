@@ -5,6 +5,7 @@ import { Award, Clock, Lightbulb, Users, ShieldCheck, Sparkles } from "lucide-re
 import { ScrollReveal, StaggerContainer } from "@/components/ui/scroll-reveal"
 
 import { useTranslations } from "next-intl"
+import { productMedia } from "@/data/media-assets"
 
 // ... imports
 
@@ -32,8 +33,8 @@ export function WhyChooseUs() {
           <ScrollReveal variant="fade-right" className="relative group">
             <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
               <Image
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop"
-                alt="Our printing facility"
+                src={productMedia.printo}
+                alt="Printify Qatar print work"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"

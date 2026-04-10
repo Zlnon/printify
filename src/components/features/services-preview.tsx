@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Printer, Image as ImageIcon, Briefcase, PenTool, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { ScrollReveal, StaggerContainer } from "@/components/ui/scroll-reveal"
+import { servicePreviewImages } from "@/data/media-assets"
 
 export function ServicesPreview() {
   const t = useTranslations('ServicesPreview')
@@ -13,30 +14,29 @@ export function ServicesPreview() {
   const tPage = useTranslations('ServicesPage')
 
   const services = [
-    // ... items (keeping same data for now, but should ideally translate metadata)
-    { 
-      icon: Printer, 
-      key: 'digital', 
-      image: 'https://images.unsplash.com/photo-1562408590-e32931084e23?q=80&w=800&auto=format&fit=crop',
-      color: 'text-amber-500'
+    {
+      icon: Printer,
+      key: "digital" as const,
+      image: servicePreviewImages.digital,
+      color: "text-amber-500",
     },
-    { 
-      icon: ImageIcon, 
-      key: 'largeFormat', 
-      image: 'https://images.unsplash.com/photo-1517292987719-0369a794ec0f?q=80&w=800&auto=format&fit=crop',
-      color: 'text-blue-500'
+    {
+      icon: ImageIcon,
+      key: "largeFormat" as const,
+      image: servicePreviewImages.largeFormat,
+      color: "text-blue-500",
     },
-    { 
-      icon: Briefcase, 
-      key: 'branding', 
-      image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop',
-      color: 'text-emerald-500'
+    {
+      icon: Briefcase,
+      key: "branding" as const,
+      image: servicePreviewImages.branding,
+      color: "text-emerald-500",
     },
-    { 
-      icon: PenTool, 
-      key: 'design', 
-      image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=800&auto=format&fit=crop',
-      color: 'text-purple-500'
+    {
+      icon: PenTool,
+      key: "design" as const,
+      image: servicePreviewImages.design,
+      color: "text-purple-500",
     },
   ]
 

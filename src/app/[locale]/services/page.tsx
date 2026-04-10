@@ -1,10 +1,20 @@
 "use client"
 
-import { useTranslations } from 'next-intl';
-import { Printer, Image as ImageIcon, Briefcase, PenTool, Monitor, Layers, ArrowRight } from "lucide-react"
+import { useTranslations } from "next-intl"
+import {
+  Printer,
+  Image as ImageIcon,
+  Briefcase,
+  PenTool,
+  Monitor,
+  Layers,
+  ArrowRight,
+} from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
+import { servicePageImages } from "@/data/media-assets"
 
 const container = {
   hidden: { opacity: 0 },
@@ -26,13 +36,13 @@ export default function ServicesPage() {
   const tCommon = useTranslations('Common');
   
   const services = [
-    { icon: Printer, key: 'digital', color: 'from-orange-500 to-red-500' },
-    { icon: ImageIcon, key: 'largeFormat', color: 'from-teal-500 to-cyan-500' },
-    { icon: Briefcase, key: 'branding', color: 'from-violet-500 to-purple-500' },
-    { icon: PenTool, key: 'offset', color: 'from-pink-500 to-rose-500' },
-    { icon: Monitor, key: 'web', color: 'from-blue-500 to-indigo-500' },
-    { icon: Layers, key: 'packaging', color: 'from-amber-500 to-orange-500' }
-  ];
+    { icon: Printer, key: "digital" as const, color: "from-orange-500 to-red-500" },
+    { icon: ImageIcon, key: "largeFormat" as const, color: "from-teal-500 to-cyan-500" },
+    { icon: Briefcase, key: "branding" as const, color: "from-violet-500 to-purple-500" },
+    { icon: PenTool, key: "offset" as const, color: "from-pink-500 to-rose-500" },
+    { icon: Monitor, key: "web" as const, color: "from-blue-500 to-indigo-500" },
+    { icon: Layers, key: "packaging" as const, color: "from-amber-500 to-orange-500" },
+  ]
 
   return (
     <div className="relative min-h-screen">
@@ -75,34 +85,45 @@ export default function ServicesPage() {
           {services.map((service, index) => {
             const Icon = service.icon
             return (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={item}
-                className="group relative overflow-hidden rounded-2xl bg-card border border-border/50 p-8 transition-all duration-500 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-2xl bg-card border border-border/50 p-8 transition-all duration-500 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 min-h-[280px]"
               >
-                {/* Gradient overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
-                {/* Icon */}
-                <div className={`relative mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${service.color} text-white shadow-lg`}>
-                  <Icon className="h-6 w-6" />
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src={servicePageImages[service.key]}
+                    alt={t(`items.${service.key}.title`)}
+                    fill
+                    className="object-cover opacity-0 group-hover:opacity-15 transition-opacity duration-500 scale-105 group-hover:scale-100"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/90 to-card" />
                 </div>
-                
-                {/* Content */}
-                <h3 
-                  className="relative mb-3 text-xl font-bold group-hover:text-primary transition-colors"
-                  style={{ fontFamily: 'var(--font-cabinet)' }}
-                >
-                  {t(`items.${service.key}.title`)}
-                </h3>
-                <p className="relative text-muted-foreground leading-relaxed mb-6">
-                  {t(`items.${service.key}.description`)}
-                </p>
-                
-                {/* Learn more link */}
-                <div className="relative flex items-center gap-2 text-sm font-medium text-primary opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  <span>{tCommon('buttons.learnMore')}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 z-[1]`} />
+
+                <div className="relative z-10">
+                  <div
+                    className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${service.color} text-white shadow-lg`}
+                  >
+                    <Icon className="h-6 w-6" />
+                  </div>
+
+                  <h3
+                    className="mb-3 text-xl font-bold group-hover:text-primary transition-colors"
+                    style={{ fontFamily: "var(--font-cabinet)" }}
+                  >
+                    {t(`items.${service.key}.title`)}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {t(`items.${service.key}.description`)}
+                  </p>
+
+                  <div className="flex items-center gap-2 text-sm font-medium text-primary opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    <span>{tCommon("buttons.learnMore")}</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </div>
                 </div>
               </motion.div>
             )

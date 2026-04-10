@@ -1,5 +1,6 @@
 "use client"
 
+import type { SyntheticEvent } from "react"
 import { useParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
@@ -9,6 +10,13 @@ import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { getProjectBySlug } from "@/data/projects"
 import { notFound } from "next/navigation"
+
+function enforceVideoSilent(e: SyntheticEvent<HTMLVideoElement>) {
+  const video = e.currentTarget
+  video.defaultMuted = true
+  video.muted = true
+  video.volume = 0
+}
 
 export default function ProjectDetailPage() {
   const params = useParams()
@@ -21,6 +29,10 @@ export default function ProjectDetailPage() {
   if (!project) {
     notFound()
   }
+
+  const hasHeroVideo = !!(project.videos && project.videos.length > 0)
+  const galleryImages = hasHeroVideo ? project.images : project.images.slice(1)
+  const showGallery = galleryImages.length > 0
 
   return (
     <div className="relative min-h-screen">
@@ -62,6 +74,9 @@ export default function ProjectDetailPage() {
               muted
               loop
               playsInline
+              onPlay={enforceVideoSilent}
+              onLoadedMetadata={enforceVideoSilent}
+              onVolumeChange={enforceVideoSilent}
             />
           ) : (
             <Image
@@ -181,6 +196,10 @@ export default function ProjectDetailPage() {
                     className="w-full h-full object-cover"
                     controls
                     playsInline
+                    muted
+                    onPlay={enforceVideoSilent}
+                    onLoadedMetadata={enforceVideoSilent}
+                    onVolumeChange={enforceVideoSilent}
                   />
                 </div>
               ))}
@@ -188,8 +207,8 @@ export default function ProjectDetailPage() {
           </motion.div>
         )}
 
-        {/* Gallery */}
-        {project.images.length > 1 && (
+        {/* Gallery — when hero is video, include all stills; otherwise skip first (already in hero) */}
+        {showGallery && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -202,14 +221,14 @@ export default function ProjectDetailPage() {
               {t("gallery")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.images.slice(1).map((img, i) => (
+              {galleryImages.map((img, i) => (
                 <div
-                  key={i}
+                  key={`${img}-${i}`}
                   className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/50"
                 >
                   <Image
                     src={img}
-                    alt={`${project.title} - ${i + 2}`}
+                    alt={`${project.title} - ${i + 1}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"

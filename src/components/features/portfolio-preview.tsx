@@ -55,7 +55,7 @@ export function PortfolioPreview() {
 
         <div className="columns-1 md:columns-2 gap-8 space-y-8">
           {projects
-            .filter((p) => [1, 2, 4, 7].includes(p.id))
+            .filter((p) => [1, 2, 3, 5].includes(p.id))
             .map((project, i) => (
             <ScrollReveal key={project.id} variant="fade-up" delay={i * 0.1} className="break-inside-avoid">
               <Link 
