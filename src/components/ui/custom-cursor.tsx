@@ -4,7 +4,10 @@ import { useEffect, useState } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
 import { MousePointer2, MousePointerClick } from "lucide-react"
 
+const FINE_POINTER_QUERY = "(hover: hover) and (pointer: fine)"
+
 export function CustomCursor() {
+  const [isEnabled, setIsEnabled] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const cursorX = useMotionValue(-100)
@@ -15,6 +18,18 @@ export function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig)
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia(FINE_POINTER_QUERY)
+    const updateEnabled = () => setIsEnabled(mediaQuery.matches)
+
+    updateEnabled()
+    mediaQuery.addEventListener("change", updateEnabled)
+
+    return () => mediaQuery.removeEventListener("change", updateEnabled)
+  }, [])
+
+  useEffect(() => {
+    if (!isEnabled) return
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
@@ -41,9 +56,9 @@ export function CustomCursor() {
       window.removeEventListener("mousemove", moveCursor)
       window.removeEventListener("mouseover", handleMouseOver)
     }
-  }, [cursorX, cursorY, isVisible])
+  }, [cursorX, cursorY, isEnabled, isVisible])
 
-  if (!isVisible) return null
+  if (!isEnabled || !isVisible) return null
 
   return (
     <motion.div

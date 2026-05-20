@@ -61,7 +61,7 @@ export default async function LocaleLayout({
             <CustomCursor />
             <WelcomeDialog />
             <FloatingAssistant />
-            <div className="flex min-h-screen flex-col noise">
+            <div className="flex min-h-screen flex-col noise overflow-x-hidden">
               <Header />
               <main className="flex-1 relative z-10">{children}</main>
               <Footer />

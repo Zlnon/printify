@@ -8,7 +8,7 @@ import { CtaSection } from "@/components/features/cta-section";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col">
+    <div className="flex flex-col">
       <Hero />
       <Clients />
       <ServicesPreview />
@@ -16,6 +16,6 @@ export default function HomePage() {
       <WhyChooseUs />
       <Testimonials />
       <CtaSection />
-    </main>
+    </div>
   );
 }

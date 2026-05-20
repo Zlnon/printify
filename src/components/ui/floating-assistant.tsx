@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Sparkles, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { WELCOME_STORAGE_KEY } from "@/components/ui/welcome-dialog";
 
 type Message = { from: "bot" | "user"; text: string };
 
@@ -22,13 +23,27 @@ export function FloatingAssistant() {
   const [inputValue, setInputValue] = useState("");
   const [replied, setReplied] = useState(false);
 
-  // Show speech bubble after 4 s, hide after 9 s (unless panel opened)
+  // Show speech bubble after welcome is dismissed (or if already seen)
   useEffect(() => {
-    const show = setTimeout(() => setBubbleVisible(true), 4000);
-    const hide = setTimeout(() => setBubbleVisible(false), 9000);
+    let showTimer: ReturnType<typeof setTimeout> | undefined;
+    let hideTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const scheduleBubble = () => {
+      showTimer = setTimeout(() => setBubbleVisible(true), 4000);
+      hideTimer = setTimeout(() => setBubbleVisible(false), 9000);
+    };
+
+    const welcomed = localStorage.getItem(WELCOME_STORAGE_KEY);
+    if (welcomed) {
+      scheduleBubble();
+    } else {
+      window.addEventListener("printify:welcome-dismissed", scheduleBubble, { once: true });
+    }
+
     return () => {
-      clearTimeout(show);
-      clearTimeout(hide);
+      if (showTimer) clearTimeout(showTimer);
+      if (hideTimer) clearTimeout(hideTimer);
+      window.removeEventListener("printify:welcome-dismissed", scheduleBubble);
     };
   }, []);
 
@@ -87,8 +102,9 @@ export function FloatingAssistant() {
   return (
     <div
       className={cn(
-        "fixed bottom-6 z-50 flex flex-col gap-3",
-        isRtl ? "left-6 items-start" : "right-6 items-end"
+        "fixed z-40 flex flex-col gap-3",
+        "bottom-[max(1.5rem,env(safe-area-inset-bottom))]",
+        isRtl ? "left-[max(1.5rem,env(safe-area-inset-left))] items-start" : "right-[max(1.5rem,env(safe-area-inset-right))] items-end"
       )}
       dir={isRtl ? "rtl" : "ltr"}
     >
@@ -103,7 +119,7 @@ export function FloatingAssistant() {
             style={{ originX: isRtl ? 0 : 1, originY: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 26 }}
             className={cn(
-              "w-[320px] rounded-3xl overflow-hidden shadow-2xl",
+              "w-full max-w-[min(320px,calc(100vw-3rem))] rounded-3xl overflow-hidden shadow-2xl",
               "bg-background border border-border",
               "flex flex-col"
             )}
@@ -130,7 +146,7 @@ export function FloatingAssistant() {
                 onClick={closePanel}
                 aria-label="Close"
                 className={cn(
-                  "absolute top-3 p-1.5 rounded-full text-black/50 hover:text-black hover:bg-black/10 transition-colors",
+                  "absolute top-3 p-2 min-h-11 min-w-11 flex items-center justify-center rounded-full text-black/50 hover:text-black hover:bg-black/10 transition-colors",
                   isRtl ? "left-3" : "right-3"
                 )}
               >
@@ -214,7 +230,7 @@ export function FloatingAssistant() {
                       <button
                         key={label}
                         onClick={() => handleQuickReply(label)}
-                        className="px-3 py-1.5 rounded-full border border-yellow-400/60 text-xs font-medium text-yellow-600 dark:text-yellow-400 hover:bg-yellow-400/10 transition-colors"
+                        className="px-3 py-2.5 min-h-11 rounded-full border border-yellow-400/60 text-xs font-medium text-yellow-600 dark:text-yellow-400 hover:bg-yellow-400/10 transition-colors"
                       >
                         {label}
                       </button>
@@ -246,7 +262,7 @@ export function FloatingAssistant() {
                 placeholder={t("inputPlaceholder")}
                 disabled={replied}
                 className={cn(
-                  "flex-1 h-9 rounded-xl px-3 text-sm bg-accent/30 border border-border",
+                  "flex-1 h-11 rounded-xl px-3 text-base md:text-sm bg-accent/30 border border-border",
                   "placeholder:text-muted-foreground/50 outline-none focus:ring-2 focus:ring-yellow-400/40",
                   "disabled:opacity-50 disabled:cursor-not-allowed"
                 )}
@@ -256,7 +272,7 @@ export function FloatingAssistant() {
                 disabled={!inputValue.trim() || replied}
                 aria-label="Send"
                 className={cn(
-                  "w-9 h-9 rounded-xl flex items-center justify-center shrink-0",
+                  "w-11 h-11 rounded-xl flex items-center justify-center shrink-0",
                   "bg-yellow-400 hover:bg-yellow-300 text-black transition-colors",
                   "disabled:opacity-40 disabled:cursor-not-allowed",
                   isRtl && "[&>svg]:rotate-180"
@@ -303,7 +319,7 @@ export function FloatingAssistant() {
                   setBubbleVisible(false);
                 }
               }}
-              className="text-muted-foreground/50 hover:text-muted-foreground ml-1 cursor-pointer"
+              className="text-muted-foreground/50 hover:text-muted-foreground ms-1 cursor-pointer p-1 min-h-11 min-w-11 flex items-center justify-center"
               aria-label="Dismiss"
             >
               <X className="w-3.5 h-3.5" />

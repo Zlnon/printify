@@ -9,12 +9,12 @@ export interface Project {
   category: ProjectCategory
   shortDescription: string
   fullDescription: string
-  client?: string
   year?: string
   deliverables?: string[]
   image: string
   images: string[]
-  videos?: string[]
+  /** Hidden projects are excluded from listings and direct access */
+  hidden?: boolean
   size: "small" | "medium" | "large"
 }
 
@@ -32,10 +32,9 @@ export const projects: Project[] = [
     slug: "restaurant-brand-identity",
     title: "Restaurant Brand Identity",
     category: "branding",
-    shortDescription: "Complete brand identity for a premium restaurant chain.",
+    shortDescription: "Complete brand identity for a premium dining experience.",
     fullDescription:
-      "We crafted a comprehensive brand identity for a luxury restaurant chain expanding across the Gulf. The project included logo design, color palette development, typography selection, and a full brand guidelines document. We also designed menus, signage, uniforms, and packaging that reflected the restaurant's sophisticated dining experience.",
-    client: "Saffron & Gold",
+      "We crafted a comprehensive brand identity built for hospitality and growth across the Gulf. The project included logo design, color palette development, typography selection, and a full brand guidelines document. We also designed menus, signage, uniforms, and packaging that work together as one cohesive visual system.",
     year: "2024",
     deliverables: ["Logo Design", "Brand Guidelines", "Menu Design", "Signage", "Packaging"],
     image: productMedia.shopSign1,
@@ -45,7 +44,7 @@ export const projects: Project[] = [
       productMedia.printo,
       productMedia.bagPng3,
     ],
-    videos: [productMedia.video.cup],
+    hidden: true,
     size: "large",
   },
   {
@@ -55,8 +54,7 @@ export const projects: Project[] = [
     category: "printDesign",
     shortDescription: "Business cards, letterheads, and branded stationery.",
     fullDescription:
-      "A complete corporate stationery package for a leading law firm. We designed business cards with premium finishes, letterheads, envelopes, and compliment slips. The design maintained consistency with their existing brand while elevating the tactile quality through paper selection and printing techniques.",
-    client: "Al-Hassan Legal",
+      "A complete corporate stationery package designed for professional everyday use. We produced business cards with premium finishes, letterheads, envelopes, and compliment slips. Every piece was aligned to the same brand standards, with careful paper selection and print techniques that elevate the final feel.",
     year: "2024",
     deliverables: ["Business Cards", "Letterheads", "Envelopes", "Compliment Slips"],
     image: productMedia.printo,
@@ -65,7 +63,7 @@ export const projects: Project[] = [
       productMedia.bagPng1,
       productMedia.bagPng4,
     ],
-    videos: [productMedia.video.flyer],
+    hidden: true,
     size: "small",
   },
   {
@@ -73,21 +71,22 @@ export const projects: Project[] = [
     slug: "product-packaging",
     title: "Product Packaging",
     category: "packaging",
-    shortDescription: "Custom packaging design for retail products.",
+    shortDescription: "Custom packaging design for retail and gift products.",
     fullDescription:
-      "Premium packaging design for a luxury skincare brand launching in the Middle East. We created box designs, labels, and tissue paper that conveyed elegance and sustainability. The packaging featured embossing, foil stamping, and eco-friendly materials.",
-    client: "Oasis Beauty",
+      "Premium packaging design for retail and special-occasion products. We created box designs, labels, tissue paper, and gift bags that feel polished on shelf and in hand. Finishes included embossing, foil stamping, and material choices selected to match each product's look and purpose.",
     year: "2023",
     deliverables: ["Box Design", "Labels", "Tissue Paper", "Gift Bags"],
-    image: productMedia.bagPhoto1,
+    image: productMedia.box2,
     images: [
+      productMedia.box2,
+      productMedia.box,
+      productMedia.flower,
       productMedia.bagPhoto1,
       productMedia.bagPng1,
       productMedia.bagPng3,
       productMedia.bagPng4,
       productMedia.bagPng5,
     ],
-    videos: [productMedia.video.boxes, productMedia.video.bag1, productMedia.video.bag2],
     size: "large",
   },
   {
@@ -97,17 +96,14 @@ export const projects: Project[] = [
     category: "largeFormat",
     shortDescription: "In-store signage and wayfinding system.",
     fullDescription:
-      "Complete in-store signage and wayfinding system for a new retail concept. We designed hanging signs, shelf talkers, window graphics, and directional signage. The system was modular and scalable for future store openings.",
-    client: "Urban Retail Co.",
+      "A complete in-store signage and wayfinding system for a retail environment. We designed hanging signs, shelf talkers, window graphics, and directional signage. The system was modular and scalable, making it easy to roll out across new locations while keeping the brand consistent.",
     year: "2023",
     deliverables: ["Hanging Signs", "Shelf Talkers", "Window Graphics", "Wayfinding"],
     image: productMedia.shopSign1,
     images: [
       productMedia.shopSign1,
       productMedia.shopSign2,
-      productMedia.bagPng3,
     ],
-    videos: [productMedia.video.bag2, productMedia.video.bag3],
     size: "small",
   },
   {
@@ -117,8 +113,7 @@ export const projects: Project[] = [
     category: "localEvent",
     shortDescription: "Full event production for the traditional Qatari Garangaooh celebration.",
     fullDescription:
-      "Garangaooh (قرنقعوه) is a beloved Qatari and Gulf tradition celebrated on the 14th night of Ramadan. Children dress in traditional attire and go door-to-door singing the Garangaooh song, receiving sweets and nuts from neighbors. We provided complete event production for a large-scale Garangaooh celebration — from branded decorations, stage design, and backdrops to custom gift bags, signage, and promotional materials. Our team captured the festive spirit while honoring the cultural heritage of this cherished tradition.",
-    client: "Community Event Organizer",
+      "Garangaooh (قرنقعوه) is a beloved Qatari and Gulf tradition celebrated on the 14th night of Ramadan. Children dress in traditional attire and go door-to-door singing the Garangaooh song, receiving sweets and nuts from neighbors. We provided complete event production for a large-scale celebration — from branded decorations, stage design, and backdrops to custom gift bags, signage, and promotional materials that honored the cultural heritage of this cherished tradition.",
     year: "2024",
     deliverables: [
       "Event Branding",
@@ -126,7 +121,7 @@ export const projects: Project[] = [
       "Large Format Banners",
       "Custom Gift Bags",
       "Promotional Materials",
-      "Video Documentation",
+      "Event Coverage",
     ],
     image: productMedia.bagPng4,
     images: [
@@ -135,27 +130,51 @@ export const projects: Project[] = [
       productMedia.bagPhoto1,
       productMedia.bagPng1,
       productMedia.bagPng3,
-      productMedia.printo,
-    ],
-    videos: [
-      productMedia.video.karankho2,
-      productMedia.video.karankho1,
-      productMedia.video.karankho3,
-      productMedia.video.whatsapp1,
-      productMedia.video.bag1,
     ],
     size: "large",
   },
 ]
 
+export function getVisibleProjects(): Project[] {
+  return projects.filter((project) => !project.hidden)
+}
+
 export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug)
+  const project = projects.find((p) => p.slug === slug)
+  if (!project || project.hidden) return undefined
+  return project
 }
 
 export function getProjectsByCategory(category: ProjectCategory): Project[] {
-  return projects.filter((p) => p.category === category)
+  return getVisibleProjects().filter((p) => p.category === category)
 }
 
 export function getAllProjectSlugs(): string[] {
-  return projects.map((p) => p.slug)
+  return getVisibleProjects().map((p) => p.slug)
+}
+
+export function getAdjacentProjects(slug: string) {
+  const visible = getVisibleProjects()
+  const index = visible.findIndex((p) => p.slug === slug)
+  if (index === -1) return { prev: null, next: null }
+
+  return {
+    prev: index > 0 ? visible[index - 1] : null,
+    next: index < visible.length - 1 ? visible[index + 1] : null,
+  }
+}
+
+export function getRelatedProjects(slug: string, limit = 3): Project[] {
+  const current = getProjectBySlug(slug)
+  if (!current) return []
+
+  const visible = getVisibleProjects()
+  const sameCategory = visible.filter(
+    (p) => p.slug !== slug && p.category === current.category
+  )
+  const others = visible.filter(
+    (p) => p.slug !== slug && p.category !== current.category
+  )
+
+  return [...sameCategory, ...others].slice(0, limit)
 }

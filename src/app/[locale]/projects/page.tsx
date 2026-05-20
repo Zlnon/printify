@@ -8,7 +8,7 @@ import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import {
-  projects,
+  getVisibleProjects,
   PROJECT_CATEGORIES,
   type Project,
   type ProjectCategory,
@@ -32,13 +32,15 @@ export default function ProjectsPage() {
   const tCategories = useTranslations("ProjectsPage.categories")
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | "all">("all")
 
+  const visibleProjects = getVisibleProjects()
+
   const filteredProjects =
     activeCategory === "all"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory)
+      ? visibleProjects
+      : visibleProjects.filter((p) => p.category === activeCategory)
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-primary/10 via-transparent to-transparent rounded-full blur-3xl" />
@@ -46,7 +48,7 @@ export default function ProjectsPage() {
         <div className="absolute inset-0 pattern-dots opacity-30" />
       </div>
 
-      <div className="container mx-auto py-24 px-4">
+      <div className="container mx-auto py-16 md:py-24 px-4">
         {/* Header section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -71,7 +73,7 @@ export default function ProjectsPage() {
           <div className="flex flex-wrap justify-center gap-2">
             <button
               onClick={() => setActiveCategory("all")}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
+              className={`px-5 py-3 min-h-11 rounded-full text-sm font-medium transition-all ${
                 activeCategory === "all"
                   ? "bg-primary text-primary-foreground"
                   : "bg-card border border-border/50 hover:border-primary/30 text-foreground"
@@ -83,7 +85,7 @@ export default function ProjectsPage() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
+                className={`px-5 py-3 min-h-11 rounded-full text-sm font-medium transition-all ${
                   activeCategory === cat
                     ? "bg-primary text-primary-foreground"
                     : "bg-card border border-border/50 hover:border-primary/30 text-foreground"

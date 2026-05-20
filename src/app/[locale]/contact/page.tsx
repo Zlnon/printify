@@ -73,7 +73,7 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-primary/10 via-transparent to-transparent rounded-full blur-3xl" />

@@ -45,7 +45,7 @@ export default function ServicesPage() {
   ]
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-primary/10 via-transparent to-transparent rounded-full blur-3xl" />
@@ -53,7 +53,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 pattern-dots opacity-30" />
       </div>
 
-      <div className="container mx-auto py-24 px-4">
+      <div className="container mx-auto py-16 md:py-24 px-4">
         {/* Header section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -120,9 +120,9 @@ export default function ServicesPage() {
                     {t(`items.${service.key}.description`)}
                   </p>
 
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex items-center gap-2 text-sm font-medium text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300">
                     <span>{tCommon("buttons.learnMore")}</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                   </div>
                 </div>
               </motion.div>

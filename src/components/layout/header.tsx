@@ -32,16 +32,34 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+
+    document.body.style.overflow = "hidden"
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileMenuOpen(false)
+    }
+    window.addEventListener("keydown", handleEscape)
+
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleEscape)
+    }
+  }, [isMobileMenuOpen])
+
+  const headerHeight = isScrolled ? "h-16" : "h-24"
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-background/80 backdrop-blur-md shadow-lg shadow-foreground/5 border-b border-foreground/5 h-16' 
-          : 'bg-transparent h-24'
-      }`}
+          ? 'bg-background/80 backdrop-blur-md shadow-lg shadow-foreground/5 border-b border-foreground/5' 
+          : 'bg-transparent'
+      } ${headerHeight}`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
+      <div className="container mx-auto px-4 h-full">
+        <div className={`flex items-center justify-between h-full transition-all duration-300`}>
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <Image
@@ -73,14 +91,14 @@ export function Header() {
             {/* Phone number - desktop */}
             <a 
               href={`tel:${siteConfig.contact.phoneTel}`}
-              className="hidden xl:flex items-center gap-2 text-sm text-white/70 hover:text-primary transition-colors"
+              className="hidden xl:flex items-center gap-2 text-sm text-foreground/70 hover:text-primary transition-colors"
               dir="ltr"
             >
               <Phone className="w-4 h-4" />
               <span>{siteConfig.contact.phone}</span>
             </a>
             
-            <div className="hidden sm:flex items-center gap-2 border-l border-white/10 pl-3 ml-2">
+            <div className="hidden sm:flex items-center gap-2 border-s border-border ps-3 ms-2">
               <LangSwitcher />
               <ModeToggle />
             </div>
@@ -95,8 +113,10 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-white hover:bg-white/10"
+              className="lg:hidden text-foreground hover:bg-foreground/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -106,19 +126,19 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a0a0a] border-t border-white/10">
-          <div className="container mx-auto px-4 py-6 space-y-4">
+        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/98 backdrop-blur-md border-t border-border overflow-y-auto">
+          <div className="container mx-auto px-4 py-6 space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-3 text-lg font-medium text-white hover:text-primary transition-colors"
+                className="block py-3.5 px-2 text-lg font-medium text-foreground hover:text-primary transition-colors min-h-11"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-4 flex items-center gap-4 border-t border-white/10">
+            <div className="pt-4 flex items-center gap-4 border-t border-border">
               <LangSwitcher />
               <ModeToggle />
             </div>

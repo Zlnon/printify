@@ -27,7 +27,10 @@
     "buttons": {
       "explore": "استكشف الخدمات",
       "work": "شاهد أعمالنا"
-    }
+    },
+    "scroll": "مرر",
+    "printoBubble": "تحتاج عرض سعر؟ أنا هنا — تواصل معنا!",
+    "showcaseLabel": "أعمال مميزة"
   },
   "Clients": {
     "title": "نالت ثقة العلامات التجارية الرائدة"
@@ -127,6 +130,7 @@
       "company": "الشركة",
       "contact": "تواصل معنا"
     },
+    "ourWork": "أعمالنا",
     "rights": "جميع الحقوق محفوظة.",
     "links": {
         "privacy": "الخصوصية",
@@ -222,12 +226,17 @@
   },
   "ProjectDetail": {
     "backToProjects": "العودة للمشاريع",
-    "client": "العميل",
     "year": "السنة",
     "deliverables": "المخرجات",
     "overview": "نظرة عامة على المشروع",
-    "videos": "الفيديوهات",
     "gallery": "معرض المشروع",
+    "relatedProjects": "مشاريع ذات صلة",
+    "previousProject": "السابق",
+    "nextProject": "التالي",
+    "projectNavigation": "التنقل بين المشاريع",
+    "closeLightbox": "إغلاق المعرض",
+    "previousImage": "الصورة السابقة",
+    "nextImage": "الصورة التالية",
     "cta": {
       "title": "جاهز لبدء مشروعك؟",
       "description": "لنصنع شيئاً رائعاً معاً. تواصل معنا للحصول على استشارة مجانية.",

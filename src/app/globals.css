@@ -127,18 +127,24 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
-  cursor: none; /* Hide default cursor */
+  overflow-x: hidden;
 }
 
-/* Hide default cursor on all interactive elements - custom cursor only */
-body a,
-body button,
-body [role="button"],
-body input[type="submit"],
-body input[type="button"],
-body select,
-body label[for] {
-  cursor: none !important;
+/* Custom cursor only on devices with a precise pointer (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  body a,
+  body button,
+  body [role="button"],
+  body input[type="submit"],
+  body input[type="button"],
+  body select,
+  body label[for] {
+    cursor: none !important;
+  }
 }
 
 ::selection {
@@ -277,7 +283,8 @@ body label[for] {
 }
 
 /* Yellow highlight */
-.highlight-yellow {
+.highlight-yellow,
+.text-highlight-yellow {
   color: var(--primary);
 }
 
@@ -364,4 +371,57 @@ body label[for] {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px -10px var(--primary);
   border-color: var(--primary);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 4s ease infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --font-display-size: 3.5rem;
+    --font-heading-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee,
+  .animate-gradient-x,
+  .animate-pulse,
+  .animate-aurora-1,
+  .animate-aurora-2,
+  .animate-aurora-3,
+  .animate-shooting-star,
+  .animate-grid,
+  .animate-float-particle {
+    animation: none !important;
+  }
 }

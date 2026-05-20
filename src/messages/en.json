@@ -27,7 +27,10 @@
     "buttons": {
       "explore": "Explore Services",
       "work": "View Our Work"
-    }
+    },
+    "scroll": "Scroll",
+    "printoBubble": "Need a quote? I've got you — let's talk!",
+    "showcaseLabel": "Featured Work"
   },
   "Clients": {
     "title": "Trusted by Leading Brands"
@@ -127,6 +130,7 @@
       "company": "Company",
       "contact": "Contact"
     },
+    "ourWork": "Our Work",
     "rights": "All rights reserved.",
     "links": {
         "privacy": "Privacy",
@@ -222,12 +226,17 @@
   },
   "ProjectDetail": {
     "backToProjects": "Back to Projects",
-    "client": "Client",
     "year": "Year",
     "deliverables": "Deliverables",
     "overview": "Project Overview",
-    "videos": "Videos",
     "gallery": "Project Gallery",
+    "relatedProjects": "Related Projects",
+    "previousProject": "Previous",
+    "nextProject": "Next",
+    "projectNavigation": "Project navigation",
+    "closeLightbox": "Close gallery",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
     "cta": {
       "title": "Ready to Start Your Project?",
       "description": "Let's create something amazing together. Get in touch for a free consultation.",

@@ -38,7 +38,7 @@ export function Footer() {
     ],
     company: [
       { label: tNav('items.about'), href: "/about" },
-      { label: "Our Work", href: "/projects" },
+      { label: t('ourWork'), href: "/projects" },
       { label: tNav('items.contact'), href: "/contact" },
     ],
     social: [
@@ -48,20 +48,20 @@ export function Footer() {
   }
 
   return (
-    <footer className="relative bg-background text-foreground overflow-hidden pt-24 pb-12">
+    <footer className="relative bg-background text-foreground overflow-hidden pt-16 md:pt-24 pb-8 md:pb-12 pb-[max(2rem,env(safe-area-inset-bottom))]">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
       
       <div className="container mx-auto px-4">
         {/* Giant CTA */}
-        <div className="mb-24 text-center border-b border-foreground/10 pb-24">
-          <h2 className="text-[12vw] leading-[0.8] font-bold tracking-tighter text-foreground/90 hover:text-foreground transition-colors duration-500 cursor-default" style={{ fontFamily: 'var(--font-cabinet)' }}>
+        <div className="mb-12 md:mb-24 text-center border-b border-foreground/10 pb-12 md:pb-24">
+          <h2 className="text-[clamp(2.5rem,12vw,8rem)] leading-[0.9] font-bold tracking-tighter text-foreground/90 hover:text-foreground transition-colors duration-500 cursor-default" style={{ fontFamily: 'var(--font-cabinet)' }}>
             {t('cta.line1')}
             <br />
             <span className="text-stroke text-transparent hover:text-primary transition-all duration-500">{t('cta.line2')}</span>
           </h2>
-          <Button size="lg" className="mt-12 h-16 px-12 text-xl rounded-full bg-primary text-primary-foreground hover:scale-105 transition-transform" asChild>
+          <Button size="lg" className="mt-8 md:mt-12 h-14 md:h-16 px-8 md:px-12 text-lg md:text-xl rounded-full bg-primary text-primary-foreground hover:scale-105 transition-transform w-full sm:w-auto" asChild>
             <Link href="/contact">
-              {t('cta.button')} <ArrowUpRight className="ml-2 w-6 h-6" />
+              {t('cta.button')} <ArrowUpRight className="ms-2 w-6 h-6" />
             </Link>
           </Button>
         </div>
@@ -75,7 +75,7 @@ export function Footer() {
                 alt="Printify"
                 width={180}
                 height={50}
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto dark:filter-none invert hue-rotate-[180deg] brightness-125 saturate-125"
               />
             </Link>
             <p className="text-lg text-foreground/50 max-w-sm leading-relaxed">
@@ -104,7 +104,7 @@ export function Footer() {
             <ul className="space-y-4">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-foreground/60 hover:text-primary hover:translate-x-1 block transition-all duration-300">
+                  <Link href={link.href} className="text-foreground/60 hover:text-primary hover:translate-x-1 rtl:hover:-translate-x-1 block transition-all duration-300 py-1">
                     {link.label}
                   </Link>
                 </li>
@@ -117,7 +117,7 @@ export function Footer() {
             <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-foreground/60 hover:text-primary hover:translate-x-1 block transition-all duration-300">
+                  <Link href={link.href} className="text-foreground/60 hover:text-primary hover:translate-x-1 rtl:hover:-translate-x-1 block transition-all duration-300 py-1">
                     {link.label}
                   </Link>
                 </li>

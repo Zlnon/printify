@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const STORAGE_KEY = "printify-welcomed-v1";
+export const WELCOME_STORAGE_KEY = "printify-welcomed-v1";
 
 export function WelcomeDialog() {
   const t = useTranslations("WelcomeDialog");
@@ -17,7 +17,7 @@ export function WelcomeDialog() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const seen = localStorage.getItem(STORAGE_KEY);
+    const seen = localStorage.getItem(WELCOME_STORAGE_KEY);
     if (!seen) {
       // Small delay so the page paints first
       const timer = setTimeout(() => setOpen(true), 800);
@@ -26,8 +26,9 @@ export function WelcomeDialog() {
   }, []);
 
   function dismiss() {
-    localStorage.setItem(STORAGE_KEY, "true");
+    localStorage.setItem(WELCOME_STORAGE_KEY, "true");
     setOpen(false);
+    window.dispatchEvent(new CustomEvent("printify:welcome-dismissed"));
   }
 
   return (
