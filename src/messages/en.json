@@ -148,7 +148,8 @@
         "email": "Email",
         "phone": "Phone",
         "address": "Address",
-        "hours": "Hours"
+        "hours": "Hours",
+        "hoursValue": "Sat - Thu: 8AM - 9PM"
     },
     "form": {
       "name": "Your Name",

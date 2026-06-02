@@ -67,7 +67,7 @@ export default function ContactPage() {
     {
       icon: Clock,
       title: t('info.hours'),
-      value: "Mon - Fri: 9AM - 6PM",
+      value: t('info.hoursValue'),
       href: null
     }
   ]
